@@ -98,7 +98,7 @@ fn main() -> Result<()> {
                             splash.navigate(url).unwrap();
                             return;
                         }
-                        info!("Starting gui.py on http://127.0.0.1:{}/", port);
+                        info!("Starting gui.py on http://0.0.0.0:{}/", port);
                         status_updater("Starting GUI");
                         let b = ManagedBackend::new(port).unwrap();
                         *backend.lock().unwrap() = Some(b);
@@ -106,7 +106,7 @@ fn main() -> Result<()> {
                         info!("Webview is ready");
                         let window = app_handle.get_webview_window("main").unwrap();
                         window
-                            .navigate(Url::parse(&format!("http://127.0.0.1:{}/", port)).unwrap())
+                            .navigate(Url::parse(&format!("http://0.0.0.0:{}/", port)).unwrap())
                             .unwrap();
                         window.show().unwrap();
                     });

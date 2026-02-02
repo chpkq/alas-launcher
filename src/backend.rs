@@ -19,13 +19,13 @@ impl ManagedBackend {
     pub fn new(port: u16) -> Result<Self> {
         std::env::set_var("ALAS_LAUNCHER_PID", format!("{}", std::process::id()));
         let child = Command::new("python")
-            .args(["gui.py", "--host", "127.0.0.1", "--port", &port.to_string()])
+            .args(["gui.py", "--host", "0.0.0.0", "--port", &port.to_string()])
             .group()
             .create_no_window()
             .spawn()?;
         let res = Self { child: Some(child) };
 
-        let address = format!("127.0.0.1:{}", port).parse().unwrap();
+        let address = format!("0.0.0.0:{}", port).parse().unwrap();
         let start_time = std::time::Instant::now();
         while start_time.elapsed() < Duration::from_secs(60) {
             if TcpStream::connect_timeout(&address, Duration::from_millis(100)).is_ok() {
