@@ -176,14 +176,14 @@ jobs:
             cp deploy.unix-cn-chpkq.yaml AzurLaneAutoScript.app/Contents/AzurLaneAutoScript/config/deploy.yaml
             uv run python - <<EOF
             import tarfile, lzma
-            with tarfile.open('AzurLaneAutoScript-CN-chpkq-${{ runner.os }}-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
+            with tarfile.open('AzurLaneAutoScript-CN-${{ runner.os }}-chpkq-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
               t.add('AzurLaneAutoScript.app')
             EOF
 
             cp deploy.unix-cn-wess09.yaml AzurLaneAutoScript.app/Contents/AzurLaneAutoScript/config/deploy.yaml
             uv run python - <<EOF
             import tarfile, lzma
-            with tarfile.open('AzurLaneAutoScript-CN-wess09-${{ runner.os }}-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
+            with tarfile.open('AzurLaneAutoScript-CN-${{ runner.os }}-wess09-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
               t.add('AzurLaneAutoScript.app')
             EOF
           linux: |
