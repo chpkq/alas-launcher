@@ -173,17 +173,17 @@ jobs:
               t.add('AzurLaneAutoScript.app')
             EOF
 
-            cp deploy.unix-cn-chpkq.yaml AzurLaneAutoScript.app/Contents/AzurLaneAutoScript/config/deploy.yaml
+            cp deploy.unix-chpkq.yaml AzurLaneAutoScript.app/Contents/AzurLaneAutoScript/config/deploy.yaml
             uv run python - <<EOF
             import tarfile, lzma
-            with tarfile.open('AzurLaneAutoScript-CN-${{ runner.os }}-chpkq-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
+            with tarfile.open('AzurLaneAutoScript-chpkq-${{ runner.os }}-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
               t.add('AzurLaneAutoScript.app')
             EOF
 
-            cp deploy.unix-cn-wess09.yaml AzurLaneAutoScript.app/Contents/AzurLaneAutoScript/config/deploy.yaml
+            cp deploy.unix-wess09.yaml AzurLaneAutoScript.app/Contents/AzurLaneAutoScript/config/deploy.yaml
             uv run python - <<EOF
             import tarfile, lzma
-            with tarfile.open('AzurLaneAutoScript-CN-${{ runner.os }}-wess09-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
+            with tarfile.open('AzurLaneAutoScript-wess09-${{ runner.os }}-$(uname -m).tar.xz', 'x:xz', preset=9|lzma.PRESET_EXTREME) as t:
               t.add('AzurLaneAutoScript.app')
             EOF
           linux: |
@@ -268,6 +268,18 @@ jobs:
           name: AzurLaneAutoScript-CN-${{ matrix.os }}
           path: |
             AzurLaneAutoScript-CN-${{ runner.os }}-*
+      - name: Upload artifacts (chpkq)
+        uses: actions/upload-artifact@v4
+        with:
+          name: AzurLaneAutoScript-chpkq-${{ matrix.os }}
+          path: |
+            AzurLaneAutoScript-chpkq-${{ runner.os }}-*
+      - name: Upload artifacts (wess09)
+        uses: actions/upload-artifact@v4
+        with:
+          name: AzurLaneAutoScript-wess09-${{ matrix.os }}
+          path: |
+            AzurLaneAutoScript-wess09-${{ runner.os }}-*
       - name: Release
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
