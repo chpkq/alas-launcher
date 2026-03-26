@@ -98,7 +98,7 @@ Deploy:
     # and run all alas instances that running before restarted
     # [Disable] null
     # [Default] 03:50
-    AutoRestartTime: 03:50
+    AutoRestartTime: null
 
   Misc:
     # Enable discord rich presence
